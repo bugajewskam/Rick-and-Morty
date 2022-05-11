@@ -4,6 +4,7 @@ import { FavouriteContext } from '../App';
 import { data } from "../data/mock"
 function CharactersPage() {
     const { favourites, addFavourite } = useContext(FavouriteContext)
+    console.log(favourites)
     return (
         <div >
             Characters Page
