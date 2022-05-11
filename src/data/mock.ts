@@ -1,4 +1,6 @@
-export const data = [
+import { Character } from "../interface/character";
+
+export const data: Character[] = [
     {
     "id": 1,
     "name": "Rick Sanchez",

@@ -8,7 +8,7 @@ export interface Character {
     origin:   Location;
     location: Location;
     image:    string;
-    created:  Date;
+    created:  string;
 }
 
 export interface Location {
