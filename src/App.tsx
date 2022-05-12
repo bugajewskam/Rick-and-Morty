@@ -1,12 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useSearchParams } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPage";
 import CharactersPage from "./pages/CharactersPage";
 import FavouritePage from "./pages/FavouritePage";
+import SearchAppBar from './components/app-bar';
+import { data } from './data/mock';
+import { Character } from './interface/character';
 
-export const FavouriteContext = React.createContext({ favourites: [] as number[], addFavourite(id: number) { }, removeFavourite(id: number){} });
+export const FavouriteContext = React.createContext({ favourites: [] as number[], addFavourite(id: number) { }, removeFavourite(id: number) { } });
 function App() {
   const [favourites, setFavourites] = useState<number[]>([])
   const addFavourite = useCallback((id: number) => {
@@ -21,6 +24,7 @@ function App() {
       }
       return copy;
     }), [])
+
 
   return (
     <FavouriteContext.Provider value={{ favourites, addFavourite, removeFavourite }}>
