@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -51,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 export interface AppBarProps {
-    search: (e: any) => void
+    search?: (e: any) => void
 
 }
 
@@ -75,7 +77,15 @@ export default function SearchAppBar({ search }: AppBarProps) {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        MUI
+                        <Link to="/characters"><Button sx={{ my: 2, color: 'white', display: 'block' }}>All characters</Button></Link>
+                    </Typography>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                    >
+                        <Link to="/favourite"><Button sx={{ my: 2, color: 'white', display: 'block' }}>Favourite characters</Button></Link>
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
