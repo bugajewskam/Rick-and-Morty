@@ -7,9 +7,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Material UI, React Hooks, React Context, React Router as well as fetch API.
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/53918817/168689177-a580b06c-33f2-4bdf-83d3-37400cd0cb10.png)
+![image](https://user-images.githubusercontent.com/53918817/168689217-1ab08688-c1ae-434e-8bdf-b254e208c33c.png)
+![image](https://user-images.githubusercontent.com/53918817/168689275-589fb56a-1224-4f9e-9041-51e12919569b.png)
+![image](https://user-images.githubusercontent.com/53918817/168689300-aeb433a5-5a21-44a2-81f1-134193a08d42.png)
+![image](https://user-images.githubusercontent.com/53918817/168689331-431e656b-e1b0-48f4-81d8-f7e685977465.png)
+![image](https://user-images.githubusercontent.com/53918817/168689412-da83ae65-85bd-4aac-96bb-8535eb357861.png)
 
 ## Demo:
-Click here for demo:
+Click here for demo: https://rick-and-morty-bugajewskam.vercel.app/characters
 
 ## TO DO (if I had more free time ;)):
 * tests,
