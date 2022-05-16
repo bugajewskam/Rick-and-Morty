@@ -1,11 +1,20 @@
-import { Character, Info } from "../interface/character"
+import { Character, Info } from "../interface/character";
+const URL = "https://rickandmortyapi.com/api/character/";
 
-export const  getData = async(query: string):Promise<Info<Character[]>>=>{
-    return await(await fetch(`https://rickandmortyapi.com/api/character/?name=${query}`)).json()
+const fetchData = async (url: string) => {
+    const response = await fetch(url);
+    const json = await response.json();
+    if (!response.ok) {
+        throw new Error(json);
+    }
+    return json;
+}
+export const listCharacters = async (query: string): Promise<Info<Character[]>> => {
+    return await fetchData(`${URL}?name=${query}`);
 }
 
-export const getCharacter = async(id: string | undefined):Promise<Character>=>{
-    return await(await fetch(`https://rickandmortyapi.com/api/character/${id}`)).json()
+export const getCharacter = async (id: string | undefined): Promise<Character> => {
+    return await fetchData(`${URL}/${id}`);
 }
 
 

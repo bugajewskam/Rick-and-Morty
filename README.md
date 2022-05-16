@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Rick & Morty App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application allows exploring Rick & Morty API. It supports adding the characters to the favourites list,
+removing them, as well as searching.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and uses
+Material UI, React Hooks, React Context, React Router as well as fetch API.
+
+## Screenshots
+
+## Demo:
+Click here for demo:
+
+## TO DO (if I had more free time ;)):
+* tests,
+* use separate endpoint to get favourite characters (currently they have to be in last fetched data),
+* persist favourite character ids between page loads (ie. with local storage),
+* filtering
 
 ## Available Scripts
 

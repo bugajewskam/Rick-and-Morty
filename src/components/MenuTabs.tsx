@@ -3,7 +3,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 
-export default function TabsLabel({currentTab}: {currentTab: string}) {
+export default function MenuTabs({currentTab}: {currentTab: string}) {
   let navigate = useNavigate();
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     navigate(`../${newValue}`)

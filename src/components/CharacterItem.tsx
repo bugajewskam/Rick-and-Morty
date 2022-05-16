@@ -9,7 +9,7 @@ import { IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 
-export interface ListItemCharacretProps {
+export interface ChaaracterItemProps {
     character: Character;
     buttonAction: (id: number) => void;
     isButtonActive: (character: Character) => boolean;
@@ -18,8 +18,8 @@ export interface ListItemCharacretProps {
 }
 
 export default function CharacterItem({ character, buttonAction,
-    addButton, blockButton, isButtonActive }: ListItemCharacretProps) {
-
+    addButton, blockButton, isButtonActive }: ChaaracterItemProps) {
+        const url =`/character/${character.id}`
     return (
         <>
             <ListItem key={character.id} alignItems="center" secondaryAction={
@@ -29,11 +29,11 @@ export default function CharacterItem({ character, buttonAction,
             }>
 
                 <ListItemAvatar>
-                    <Link to="{`/character/${character.id}`}">
+                    <Link to="{url}">
                         <Avatar alt={character.name} src={character.image} /></Link>
                 </ListItemAvatar>
                 <ListItemText
-                    primary={<Link to={`/character/${character.id}`}>{character.name}</Link>}
+                    primary={<Link to={url}>{character.name}</Link>}
                 />
             </ListItem>
             <Divider variant="inset" component="li" />

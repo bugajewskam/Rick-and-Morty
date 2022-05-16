@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import logo from "../assets/logo.webp"
+import logo from "../assets/logo1.png"
 import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
@@ -59,7 +59,7 @@ export default function SearchAppBar({ search }: AppBarProps) {
             <AppBar position="static" sx={{ alignItems: "stretch" }} >
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
                     <Link to="/characters">
-                        <img src={logo} style={{ height: 32 }} />
+                        <img src={logo} style={{ height: 52 }} />
                     </Link>
 
                     <Search>

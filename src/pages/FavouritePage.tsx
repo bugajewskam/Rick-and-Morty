@@ -15,7 +15,7 @@ function FavouritePage() {
         <Container maxWidth="sm" sx={{ marginTop: 2 }}>
             <ListCharacter characters={favouritesList}
                 isButtonActive={(character: Character) => favourites.includes(character.id)}
-                activIcon={<HeartBrokenIcon style={{ color: "red" }} />}
+                addButton={<HeartBrokenIcon style={{ color: "red" }} />}
                 buttonAction={removeFavourite}
             />
 
