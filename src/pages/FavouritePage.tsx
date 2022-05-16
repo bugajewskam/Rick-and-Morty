@@ -1,16 +1,15 @@
 import { Container } from '@mui/material';
-import { stringify } from 'querystring';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useEffect, useMemo} from 'react';
 import { FavouriteContext } from '../App';
-import ListCharacter from '../components/characterList';
+import ListCharacter from '../components/CharacterList';
 import { Character } from '../interface/character';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 function FavouritePage() {
-    const { favourites, removeFavourite, filterList } = useContext(FavouriteContext)
+    const { favourites, removeFavourite, characters, setCurrentTab } = useContext(FavouriteContext)
     const favouritesList = useMemo(() =>
-        filterList.filter((item) => favourites.includes(item.id))
-        , [filterList, favourites])
+        characters.filter((item) => favourites.includes(item.id))
+        , [characters, favourites])
+    useEffect(() => setCurrentTab('favourite'));
     return (
 
         <Container maxWidth="sm" sx={{ marginTop: 2 }}>

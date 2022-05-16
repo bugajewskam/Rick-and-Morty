@@ -1,19 +1,38 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPage";
 import CharactersPage from "./pages/CharactersPage";
 import FavouritePage from "./pages/FavouritePage";
-import SearchAppBar from './components/app-bar';
-import { data } from './data/mock';
+import SearchAppBar from './components/AppBar';
 import { Character } from './interface/character';
+import TabsLabel from './components/Tabs';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { getData } from './data/data';
+import CircularProgres from './components/Progres';
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#10aec6",
+    },
+  },
+});
 
-export const FavouriteContext = React.createContext({ filterList: [] as Character[], favourites: [] as number[], addFavourite(id: number) { }, removeFavourite(id: number) { } });
+export const FavouriteContext = React.createContext({
+  characters: [] as Character[], favourites: [] as number[], addFavourite(id: number) { },
+  removeFavourite(id: number) { }, setCurrentTab(tab: string) { }
+});
 function App() {
   const [favourites, setFavourites] = useState<number[]>([])
+  const [isLoading, setLoading] = useState<boolean>(false)
+  const [characters, setCharacters] = useState<Character[] | [] >([])
+  const [query, setQuery] = useState('')
+  const [currentTab, setCurrentTab] = useState('')
+  
   const addFavourite = useCallback((id: number) => {
     setFavourites(prev => [...prev, id])
   }, []);
+  
   const removeFavourite = useCallback((id: number) =>
     setFavourites(prev => {
       const copy = [...prev];
@@ -23,34 +42,37 @@ function App() {
       }
       return copy;
     }), [])
-  const [query, setQuery] = useState('')
-  const handleSearch = (event: any) => {
-    setQuery((event.target.value).toLowerCase());
-  }
-  const filterList = useMemo((): Character[] => {
-    if (query !== '') {
-      console.log(query)
-      return data.filter((char) => (char.name).toLowerCase().includes(query))
 
-    } else {
-      return data
-    }
-    return data
-  }, [data, query])
+  const handleSearch = (event: any) => 
+    setQuery((event.target.value).toLowerCase());
+  
+
+  useEffect(() => {
+    setLoading(true)
+    getData(query).then((result) => setCharacters(result?.results || []))
+      .finally(() => setLoading(false))
+  }, [query])
+
+
 
 
   return (
-    <FavouriteContext.Provider value={{ favourites, addFavourite, removeFavourite, filterList }}>
-      <div className="App">
+    <ThemeProvider theme={theme}>
+      <FavouriteContext.Provider value={{ favourites, characters: characters, addFavourite, removeFavourite, setCurrentTab }}>
         <SearchAppBar search={handleSearch} />
-
-        <Routes>
-          <Route path="characters" element={<CharactersPage />} />
-          <Route path="character/:id" element={<CharacterPage />} />
-          <Route path="favourite" element={<FavouritePage />} />
-        </Routes>
-      </div>
-    </FavouriteContext.Provider>
+        <TabsLabel currentTab={currentTab} />
+        <div className="App">
+          {isLoading && <CircularProgres />}
+          {!isLoading &&
+            <Routes>
+              <Route path="/" element={<Navigate to="/characters"/>} />
+              <Route path="characters" element={<CharactersPage />} />
+              <Route path="character/:id" element={<CharacterPage />} />
+              <Route path="favourite" element={<FavouritePage />} />
+            </Routes>}
+        </div>
+      </FavouriteContext.Provider>
+    </ThemeProvider>
   );
 }
 

@@ -1,14 +1,10 @@
-import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button } from '@mui/material';
+import logo from "../assets/logo.webp"
 import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
@@ -60,33 +56,12 @@ export interface AppBarProps {
 export default function SearchAppBar({ search }: AppBarProps) {
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        <Link to="/characters"><Button sx={{ my: 2, color: 'white', display: 'block' }}>All characters</Button></Link>
-                    </Typography>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        <Link to="/favourite"><Button sx={{ my: 2, color: 'white', display: 'block' }}>Favourite characters</Button></Link>
-                    </Typography>
+            <AppBar position="static" sx={{ alignItems: "stretch" }} >
+                <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <Link to="/characters">
+                        <img src={logo} style={{ height: 32 }} />
+                    </Link>
+
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
